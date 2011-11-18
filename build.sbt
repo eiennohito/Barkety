@@ -4,11 +4,13 @@ name := "barkety"
 
 version := "3.2.0"
 
-scalaVersion := "2.9.0"
+scalaVersion := "2.9.1"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 resolvers += "Glassfish" at "http://maven.glassfish.org/content/repositories/maven.hudson-labs.org"
+
+resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "1.6.1",
@@ -19,7 +21,7 @@ libraryDependencies ++= Seq("actor") map { "se.scalablesolutions.akka" % "akka-%
 
 libraryDependencies ++= Seq("testkit") map { "se.scalablesolutions.akka" % "akka-%s".format(_) % "1.2" % "test" }
 
-libraryDependencies ++= Seq("smack", "smackx") map { "jivesoftware" % _ % "3.2.0" }
+libraryDependencies ++= Seq("smack", "smackx") map { "jivesoftware" % _ % "3.2.1" }
 
 initialCommands := """
 import akka.actor._
