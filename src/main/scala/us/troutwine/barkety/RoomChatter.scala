@@ -1,9 +1,11 @@
 package us.troutwine.barkety
 
 import akka.actor.{Actor,ActorRef}
+import jid.MucJID
 import org.jivesoftware.smack.PacketListener
 import org.jivesoftware.smack.packet.{Message,Packet}
 import org.jivesoftware.smackx.muc.{MultiUserChat,DiscussionHistory}
+import java.util.Date
 
 
 class RoomChatter(muc: MultiUserChat, nickname: String, password: Option[String] = None) extends Actor {
@@ -12,7 +14,7 @@ class RoomChatter(muc: MultiUserChat, nickname: String, password: Option[String]
       packet match {
         case msg: Message =>
           if (msg.getBody != null)
-            self ! ReceivedMessage(msg.getBody)
+            self ! MucMessage(MucJID(msg.getFrom), msg.getBody, new Date)
       }
     }
   })
@@ -31,8 +33,8 @@ class RoomChatter(muc: MultiUserChat, nickname: String, password: Option[String]
       muc.join(nickname, password.getOrElse(null), history, 5000)
     case RegisterParent(ref) =>
       parent = Some(ref)
-    case msg: ReceivedMessage =>
-      parent map { _ ! InboundMessage(msg.msg) }
+    case msg: MucMessage =>
+      parent map { _ ! msg }
     case msg: String => 
       muc.sendMessage(msg)
   }

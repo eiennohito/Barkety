@@ -1,5 +1,6 @@
 package us.troutwine.barkety
 
+import jid.{MucJID, JID}
 import org.scalatest.{Spec,BeforeAndAfterAll}
 import org.scalatest.matchers.ShouldMatchers
 import akka.actor.Actor._
@@ -122,6 +123,8 @@ class BarketySpec extends Spec with ShouldMatchers with TestKit with MockitoSuga
       jid1 should be >= jid2
     }
   }
+
+
   
   describe("Bot builder") {
     import Bot._

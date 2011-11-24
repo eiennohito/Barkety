@@ -2,6 +2,7 @@ package us.troutwine.barkety
 
 import akka.actor.Actor
 import akka.config.Supervision.AllForOneStrategy
+import jid.JID
 import scala.collection.mutable
 import org.jivesoftware.smack.{XMPPConnection,Chat}
 import org.jivesoftware.smack.{Roster,ConnectionConfiguration}

@@ -2,6 +2,7 @@ package us.troutwine.barkety
 
 import akka.actor.ActorRef
 import akka.event.{EventHandler => log}
+import jid.JID
 import org.jivesoftware.smack.{ChatManagerListener,Chat}
 
 
