@@ -129,8 +129,8 @@ class ChatSupervisor(jid:JID, password:String,
     }
     case RemoteChatCreated(partnerJID,chat) =>
       chats.put(partnerJID,chat)
-    case JoinRoom(roomId, nickname, password) => 
-      val roomChatter = Actor.actorOf(new RoomChatter(new MultiUserChat(conn, roomId), nickname.getOrElse(jid.username), password)).start()
+    case JoinRoom(roomId, nickname, roomPwd) =>
+      val roomChatter = Actor.actorOf(new RoomChatter(new MultiUserChat(conn, roomId), nickname.getOrElse(jid.username), roomPwd)).start()
       self.link(roomChatter)
       self.tryReply(roomChatter)
   }
