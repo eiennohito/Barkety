@@ -1,4 +1,4 @@
-package us.troutwine.barkety
+package us.troutwine.barkety.jid
 
 import scala.util.matching.Regex
 
