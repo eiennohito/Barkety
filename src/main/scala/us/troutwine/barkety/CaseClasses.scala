@@ -16,4 +16,9 @@ private sealed abstract class InternalMessage
 private case class RemoteChatCreated(jid:JID,chat:Chat) extends InternalMessage
 private case class ReceivedMessage(msg:String) extends InternalMessage
 
-case class MucMessage(jid: MucJID, msg: String,  time: Date)
+abstract class MucBaseMessage
+case class MucMessage(jid: MucJID, msg: String, time: Date) extends MucBaseMessage
+case class MucPresence(jid: MucJID, status: String, time: Date) extends MucBaseMessage
+
+case class UserInfoRequest(jid: MucJID)
+case class ExtendedUserInfo(mjid: MucJID, jid: Option[JID], affinity: String, role: String)

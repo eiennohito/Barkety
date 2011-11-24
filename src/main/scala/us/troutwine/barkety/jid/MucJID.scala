@@ -6,6 +6,7 @@ package us.troutwine.barkety.jid
  */
 
 case class MucJID (room: String, server: String,  nickname: String) {
+  def jidString: String = "%s@%s/%s".format(room, server, nickname)
 }
 
 object MucJID {
