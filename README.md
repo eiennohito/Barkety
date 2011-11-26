@@ -25,7 +25,7 @@ connected by the Chatter.
 
 By default, all chats are preceded by roster subscription invitations.
 
-```
+```Scala
 import us.troutwine.barkety._
 import akka.actor.Actor.actorOf
 import akka.actor.{Actor,ActorRef}

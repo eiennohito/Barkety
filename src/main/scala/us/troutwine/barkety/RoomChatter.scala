@@ -28,7 +28,7 @@ class RoomChatter(muc: MultiUserChat, nickname: String, password: Option[String]
     def processPacket(packet: Packet) {
       packet match {
         case p: Presence => {
-          self ! MucPresence(MucJID(p.getFrom), p.getStatus, new Date)
+          self ! MucPresence(MucJID(p.getFrom), p.getType, new Date)
         }
       }
     }
