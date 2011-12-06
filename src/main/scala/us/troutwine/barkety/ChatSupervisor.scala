@@ -22,8 +22,8 @@ class ChatSupervisor(jid:JID, password:String,
   private val conn = new XMPPConnection(conf)
   conn.connect()
   domain match {
-    case Some("talk.google.com") => conn.login(jid, password)
-    case _ => conn.login(jid.username, password)
+    case Some("talk.google.com") => conn.login(jid, password, "eien-bot")
+    case _ => conn.login(jid.username, password, "eien-bot")
   }
   private val roster:Roster = conn.getRoster()
   roster.setSubscriptionMode(Roster.SubscriptionMode.accept_all)
@@ -51,5 +51,9 @@ class ChatSupervisor(jid:JID, password:String,
 
   override def postStop = {
     conn.disconnect()
+  }
+
+  override def preRestart(reason: Throwable, message: Option[Any]) {
+    wait(100)
   }
 }
