@@ -5,7 +5,6 @@ import jid.{JID, MucJID}
 import org.jivesoftware.smack.PacketListener
 import org.jivesoftware.smackx.muc.{MultiUserChat,DiscussionHistory}
 import org.jivesoftware.smack.packet.{Presence, Message, Packet}
-import org.jivesoftware.smackx.packet.MUCUser
 import java.util.Date
 
 /**
@@ -45,7 +44,7 @@ class RoomChatter(muc: MultiUserChat, nickname: String, password: Option[String]
   def forward[A](msg : A) = parent map {_ ! msg}
 
   def findUserInfo(mjid: MucJID): Option[ExtendedUserInfo] = {
-    val ui = muc.getOccupant(mjid.jidString)
+    val ui = muc.getOccupant(mjid)
     if (ui == null) {
       None
     } else {

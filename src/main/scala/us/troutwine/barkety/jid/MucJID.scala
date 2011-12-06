@@ -6,7 +6,6 @@ package us.troutwine.barkety.jid
  */
 
 case class MucJID (room: String, server: String,  nickname: String) {
-  def jidString: String = "%s@%s/%s".format(room, server, nickname)
 }
 
 object MucJID {
@@ -14,4 +13,6 @@ object MucJID {
     val smt = JID(jid)
     new MucJID(smt.username, smt.domain, smt.resource.get)
   }
+
+  implicit def mjid2String(mjid: MucJID) = "%s@%s/%s".format(mjid.room, mjid.server, mjid.nickname)
 }
