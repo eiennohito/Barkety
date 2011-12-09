@@ -3,6 +3,14 @@ package us.troutwine.barkety.jid
 import scala.util.matching.Regex
 
 case class JID(username:String, domain:String, resource:Option[String]) extends Ordered[JID] {
+  def asString(trimResource: Boolean) : String = {
+    trimResource match {
+      case false => this
+      case true => "%s@%s".format(username, domain)
+    }
+  }
+
+
   override def compare(that:JID) = {
     (that:String) compare (this:String)
   }
